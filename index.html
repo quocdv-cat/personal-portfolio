@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <img src="./images/PXL_20241108_043628009.jpg" alt="Profile Picture" class="profile-img">
+        <div class="basic-info">
+            <h1 class="full-name">Dong Van Quoc</h1>
+            <p>Student - Electric Power University</p>
+        </div>
+        <div class="contact-info">
+            <p>Email: dongquochn@email.com</p>
+            <p>Phone: (+84) 962 820 470</p>
+            <p>Address: Hanoi, Vietnam</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <nav class="navigation">
+            <ul>
+                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
+                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="container">
+            <section id="about">
+                <h2>About Me</h2>
+                <p>
+                    This is the section about yourself. Write about your experiences, 
+                    interests, and career goals.
+                </p>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <a href="./projects/project1.html">
+                            <h3>Project 1</h3>
+                            <p>Description of your project</p>
+                        </a>
+                    </div>
+
+                    <div class="project-card">
+                        <a href="./projects/project2.html">
+                            <h3>Project 2</h3>
+                            <p>Description of your project</p>
+                        </a>
+                    </div>
+
+                    <div class="project-card">
+                        <a href="./projects/project3.html">
+                            <h3>Project 3</h3>
+                            <p>Description of your project</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2>Skills</h2>
+                <div class="skills-list">
+                    <span class="skill-item">C</span>
+                    <span class="skill-item">C++</span>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <div class="contact-container">
+                    <form action="https://formsubmit.co/dongquochn@gmail.com" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name:</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject:</label>
+                            <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message:</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">
+                            <i class="fas fa-paper-plane"></i> Send
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
