@@ -116,32 +116,56 @@
     </div>
 
     <script>
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
-        });
+        // Tạo ID duy nhất cho người dùng nếu chưa có
+        function generateUserId() {
+            if (!localStorage.getItem('userId')) {
+                const userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('userId', userId);
+            }
+            return localStorage.getItem('userId');
+        }
 
         function updateVisitorCount() {
+            const userId = generateUserId();
             const today = new Date().toDateString();
+            
+            // Lấy hoặc khởi tạo thống kê từ localStorage
             let stats = JSON.parse(localStorage.getItem('visitorStats')) || {
                 totalVisitors: 0,
                 today: today,
-                todayVisitors: 0
+                todayVisitors: 0,
+                dailyVisitors: [],    // Mảng lưu ID người dùng đã truy cập trong ngày
+                uniqueVisitors: []    // Mảng lưu ID tất cả người dùng đã truy cập
             };
 
+            // Nếu sang ngày mới
             if (stats.today !== today) {
                 stats.today = today;
                 stats.todayVisitors = 0;
+                stats.dailyVisitors = []; // Reset danh sách người truy cập trong ngày
             }
 
-            stats.todayVisitors++;
-            stats.totalVisitors++;
+            // Kiểm tra và cập nhật số người truy cập trong ngày
+            if (!stats.dailyVisitors.includes(userId)) {
+                stats.dailyVisitors.push(userId);
+                stats.todayVisitors++;
+            }
 
+            // Kiểm tra và cập nhật tổng số người truy cập
+            if (!stats.uniqueVisitors.includes(userId)) {
+                stats.uniqueVisitors.push(userId);
+                stats.totalVisitors++;
+            }
+
+            // Lưu thống kê vào localStorage
             localStorage.setItem('visitorStats', JSON.stringify(stats));
 
+            // Cập nhật hiển thị
             document.getElementById('todayVisitors').textContent = stats.todayVisitors;
             document.getElementById('totalVisitors').textContent = stats.totalVisitors;
         }
 
+        // Chạy khi trang được tải
         updateVisitorCount();
     </script>
 </body>
