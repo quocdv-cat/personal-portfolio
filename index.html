@@ -27,6 +27,10 @@
             <p>Phone: (+84) 962 820 470</p>
             <p>Address: Hanoi, Vietnam</p>
         </div>
+        <div class="visitor-stats">
+            <p>Today's Visitors: <span id="todayVisitors">0</span></p>
+            <p>Total Visitors: <span id="totalVisitors">0</span></p>
+        </div>
     </div>
 
     <div class="main-content">
@@ -43,7 +47,8 @@
             <section id="about">
                 <h2>About Me</h2>
                 <p>
-                    2,3 con mèoo.
+                    This is the section about yourself. Write about your experiences, 
+                    interests, and career goals.
                 </p>
             </section>
 
@@ -114,6 +119,30 @@
         document.getElementById('menuToggle').addEventListener('click', function() {
             document.querySelector('.sidebar').classList.toggle('active');
         });
+
+        function updateVisitorCount() {
+            const today = new Date().toDateString();
+            let stats = JSON.parse(localStorage.getItem('visitorStats')) || {
+                totalVisitors: 0,
+                today: today,
+                todayVisitors: 0
+            };
+
+            if (stats.today !== today) {
+                stats.today = today;
+                stats.todayVisitors = 0;
+            }
+
+            stats.todayVisitors++;
+            stats.totalVisitors++;
+
+            localStorage.setItem('visitorStats', JSON.stringify(stats));
+
+            document.getElementById('todayVisitors').textContent = stats.todayVisitors;
+            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
+        }
+
+        updateVisitorCount();
     </script>
 </body>
 </html>
