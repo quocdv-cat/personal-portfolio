@@ -17,6 +17,8 @@ body {
     color: white;
     padding: 2rem;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-img {
@@ -707,4 +709,18 @@ section h2::after {
     .project-card h3 {
         color: #a3c1d9;
     }
+}
+
+.visitor-stats {
+    margin-top: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.visitor-stats p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #fff;
 }
