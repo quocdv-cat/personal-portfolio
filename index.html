@@ -115,7 +115,25 @@
         </div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database-compat.js"></script>
+
     <script>
+        // Cấu hình Firebase - thay thế bằng cấu hình của bạn từ Firebase Console
+        const firebaseConfig = {
+            apiKey: "your-api-key",
+            authDomain: "your-auth-domain",
+            databaseURL: "your-database-url",
+            projectId: "your-project-id",
+            storageBucket: "your-storage-bucket",
+            messagingSenderId: "your-messaging-sender-id",
+            appId: "your-app-id"
+        };
+
+        // Khởi tạo Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
         // Tạo ID duy nhất cho người dùng nếu chưa có
         function generateUserId() {
             if (!localStorage.getItem('userId')) {
@@ -128,41 +146,54 @@
         function updateVisitorCount() {
             const userId = generateUserId();
             const today = new Date().toDateString();
-            
-            // Lấy hoặc khởi tạo thống kê từ localStorage
-            let stats = JSON.parse(localStorage.getItem('visitorStats')) || {
-                totalVisitors: 0,
-                today: today,
-                todayVisitors: 0,
-                dailyVisitors: [],    // Mảng lưu ID người dùng đã truy cập trong ngày
-                uniqueVisitors: []    // Mảng lưu ID tất cả người dùng đã truy cập
-            };
+            const visitorStatsRef = database.ref('visitorStats');
 
-            // Nếu sang ngày mới
-            if (stats.today !== today) {
-                stats.today = today;
-                stats.todayVisitors = 0;
-                stats.dailyVisitors = []; // Reset danh sách người truy cập trong ngày
-            }
+            // Đọc dữ liệu hiện tại
+            visitorStatsRef.once('value')
+                .then((snapshot) => {
+                    let stats = snapshot.val() || {
+                        totalVisitors: 0,
+                        today: today,
+                        todayVisitors: 0,
+                        dailyVisitors: [],
+                        uniqueVisitors: []
+                    };
 
-            // Kiểm tra và cập nhật số người truy cập trong ngày
-            if (!stats.dailyVisitors.includes(userId)) {
-                stats.dailyVisitors.push(userId);
-                stats.todayVisitors++;
-            }
+                    // Nếu sang ngày mới
+                    if (stats.today !== today) {
+                        stats.today = today;
+                        stats.todayVisitors = 0;
+                        stats.dailyVisitors = [];
+                    }
 
-            // Kiểm tra và cập nhật tổng số người truy cập
-            if (!stats.uniqueVisitors.includes(userId)) {
-                stats.uniqueVisitors.push(userId);
-                stats.totalVisitors++;
-            }
+                    // Kiểm tra và cập nhật số người truy cập trong ngày
+                    if (!stats.dailyVisitors.includes(userId)) {
+                        stats.dailyVisitors.push(userId);
+                        stats.todayVisitors++;
+                    }
 
-            // Lưu thống kê vào localStorage
-            localStorage.setItem('visitorStats', JSON.stringify(stats));
+                    // Kiểm tra và cập nhật tổng số người truy cập
+                    if (!stats.uniqueVisitors.includes(userId)) {
+                        stats.uniqueVisitors.push(userId);
+                        stats.totalVisitors++;
+                    }
 
-            // Cập nhật hiển thị
-            document.getElementById('todayVisitors').textContent = stats.todayVisitors;
-            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
+                    // Cập nhật dữ liệu lên Firebase
+                    return visitorStatsRef.set(stats);
+                })
+                .then(() => {
+                    // Thiết lập listener để cập nhật realtime
+                    visitorStatsRef.on('value', (snapshot) => {
+                        const stats = snapshot.val();
+                        if (stats) {
+                            document.getElementById('todayVisitors').textContent = stats.todayVisitors;
+                            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error updating visitor count:", error);
+                });
         }
 
         // Chạy khi trang được tải
