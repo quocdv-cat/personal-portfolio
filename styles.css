@@ -710,3 +710,77 @@ section h2::after {
         color: #a3c1d9;
     }
 }
+
+.container section h2 {
+    color: #4A76C7;  /* Hoặc màu mà bạn muốn sử dụng */
+    font-weight: bold;
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.education-date {
+    color: #666;  /* màu xám nhạt hoặc màu khác tùy bạn chọn */
+    font-size: 0.9em;
+}
+
+.education-item h3 {
+    margin: 0;  /* loại bỏ margin mặc định */
+}
+
+.education-date, 
+.education-item p {
+    font-style: italic;
+}
+
+.visitor-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 0.9em;
+    border-left: 4px solid rgba(74, 118, 199, 0.8);
+    transition: all 0.3s ease;
+}
+
+.visitor-counter:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.visitor-counter p {
+    margin: 5px 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.visitor-counter p::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.visitor-counter p:first-child::before {
+    content: "\f017";
+    color: #4A76C7;
+}
+
+.visitor-counter p:last-child::before {
+    content: "\f201";
+    color: #4A76C7;
+}
+
+.visitor-counter span {
+    font-weight: bold;
+    color: #4A76C7;
+}
