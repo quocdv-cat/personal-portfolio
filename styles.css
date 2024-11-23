@@ -710,17 +710,3 @@ section h2::after {
         color: #a3c1d9;
     }
 }
-
-.visitor-stats {
-    margin-top: auto;
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-}
-
-.visitor-stats p {
-    margin: 5px 0;
-    font-size: 0.9em;
-    color: #fff;
-}
