@@ -47,7 +47,7 @@
             <section id="about">
                 <h2>About Me</h2>
                 <p>
-                    2,3 con mèoo :>>
+                    2,3 con mèoo.
                 </p>
             </section>
 
@@ -114,85 +114,54 @@
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database-compat.js"></script>
-
     <script>
-        // Cấu hình Firebase - thay thế bằng cấu hình của bạn từ Firebase Console
-        const firebaseConfig = {
-            apiKey: "your-api-key",
-            authDomain: "your-auth-domain",
-            databaseURL: "your-database-url",
-            projectId: "your-project-id",
-            storageBucket: "your-storage-bucket",
-            messagingSenderId: "your-messaging-sender-id",
-            appId: "your-app-id"
-        };
-
-        // Khởi tạo Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-
-        // Tạo ID duy nhất cho người dùng nếu chưa có
-        function generateUserId() {
-            if (!localStorage.getItem('userId')) {
-                const userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                localStorage.setItem('userId', userId);
+        function generateVisitorId() {
+            // Tạo ID cho visitor nếu chưa có
+            if (!localStorage.getItem('visitorId')) {
+                const visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('visitorId', visitorId);
             }
-            return localStorage.getItem('userId');
+            return localStorage.getItem('visitorId');
         }
 
         function updateVisitorCount() {
-            const userId = generateUserId();
+            const visitorId = generateVisitorId();
             const today = new Date().toDateString();
-            const visitorStatsRef = database.ref('visitorStats');
+            
+            // Lấy hoặc khởi tạo thống kê
+            let stats = JSON.parse(localStorage.getItem('visitorStats')) || {
+                totalVisitors: 0,
+                today: today,
+                todayVisitors: 0,
+                dailyVisitors: [], // Mảng lưu ID của visitors trong ngày
+                uniqueVisitors: [] // Mảng lưu tất cả ID đã ghé thăm
+            };
 
-            // Đọc dữ liệu hiện tại
-            visitorStatsRef.once('value')
-                .then((snapshot) => {
-                    let stats = snapshot.val() || {
-                        totalVisitors: 0,
-                        today: today,
-                        todayVisitors: 0,
-                        dailyVisitors: [],
-                        uniqueVisitors: []
-                    };
+            // Reset số liệu nếu sang ngày mới
+            if (stats.today !== today) {
+                stats.today = today;
+                stats.todayVisitors = 0;
+                stats.dailyVisitors = [];
+            }
 
-                    // Nếu sang ngày mới
-                    if (stats.today !== today) {
-                        stats.today = today;
-                        stats.todayVisitors = 0;
-                        stats.dailyVisitors = [];
-                    }
+            // Đếm lượt truy cập trong ngày
+            if (!stats.dailyVisitors.includes(visitorId)) {
+                stats.dailyVisitors.push(visitorId);
+                stats.todayVisitors++;
+            }
 
-                    // Kiểm tra và cập nhật số người truy cập trong ngày
-                    if (!stats.dailyVisitors.includes(userId)) {
-                        stats.dailyVisitors.push(userId);
-                        stats.todayVisitors++;
-                    }
+            // Đếm tổng số visitor unique
+            if (!stats.uniqueVisitors.includes(visitorId)) {
+                stats.uniqueVisitors.push(visitorId);
+                stats.totalVisitors++;
+            }
 
-                    // Kiểm tra và cập nhật tổng số người truy cập
-                    if (!stats.uniqueVisitors.includes(userId)) {
-                        stats.uniqueVisitors.push(userId);
-                        stats.totalVisitors++;
-                    }
+            // Lưu thống kê
+            localStorage.setItem('visitorStats', JSON.stringify(stats));
 
-                    // Cập nhật dữ liệu lên Firebase
-                    return visitorStatsRef.set(stats);
-                })
-                .then(() => {
-                    // Thiết lập listener để cập nhật realtime
-                    visitorStatsRef.on('value', (snapshot) => {
-                        const stats = snapshot.val();
-                        if (stats) {
-                            document.getElementById('todayVisitors').textContent = stats.todayVisitors;
-                            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
-                        }
-                    });
-                })
-                .catch((error) => {
-                    console.error("Error updating visitor count:", error);
-                });
+            // Cập nhật giao diện
+            document.getElementById('todayVisitors').textContent = stats.todayVisitors;
+            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
         }
 
         // Chạy khi trang được tải
