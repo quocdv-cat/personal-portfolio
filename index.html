@@ -23,13 +23,9 @@
             <p>Student - Electric Power University</p>
         </div>
         <div class="contact-info">
-            <p>Email: dongquochn@email.com</p>
-            <p>Phone: (+84) 962 820 470</p>
+            <p>Email: dongqu****@email.com</p>
+            <p>Phone: (+84) 962 820 ***</p>
             <p>Address: Hanoi, Vietnam</p>
-        </div>
-        <div class="visitor-stats">
-            <p>Today's Visitors: <span id="todayVisitors">0</span></p>
-            <p>Total Visitors: <span id="totalVisitors">0</span></p>
         </div>
     </div>
 
@@ -113,59 +109,5 @@
             </section>
         </div>
     </div>
-
-    <script>
-        function generateVisitorId() {
-            // Tạo ID cho visitor nếu chưa có
-            if (!localStorage.getItem('visitorId')) {
-                const visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                localStorage.setItem('visitorId', visitorId);
-            }
-            return localStorage.getItem('visitorId');
-        }
-
-        function updateVisitorCount() {
-            const visitorId = generateVisitorId();
-            const today = new Date().toDateString();
-            
-            // Lấy hoặc khởi tạo thống kê
-            let stats = JSON.parse(localStorage.getItem('visitorStats')) || {
-                totalVisitors: 0,
-                today: today,
-                todayVisitors: 0,
-                dailyVisitors: [], // Mảng lưu ID của visitors trong ngày
-                uniqueVisitors: [] // Mảng lưu tất cả ID đã ghé thăm
-            };
-
-            // Reset số liệu nếu sang ngày mới
-            if (stats.today !== today) {
-                stats.today = today;
-                stats.todayVisitors = 0;
-                stats.dailyVisitors = [];
-            }
-
-            // Đếm lượt truy cập trong ngày
-            if (!stats.dailyVisitors.includes(visitorId)) {
-                stats.dailyVisitors.push(visitorId);
-                stats.todayVisitors++;
-            }
-
-            // Đếm tổng số visitor unique
-            if (!stats.uniqueVisitors.includes(visitorId)) {
-                stats.uniqueVisitors.push(visitorId);
-                stats.totalVisitors++;
-            }
-
-            // Lưu thống kê
-            localStorage.setItem('visitorStats', JSON.stringify(stats));
-
-            // Cập nhật giao diện
-            document.getElementById('todayVisitors').textContent = stats.todayVisitors;
-            document.getElementById('totalVisitors').textContent = stats.totalVisitors;
-        }
-
-        // Chạy khi trang được tải
-        updateVisitorCount();
-    </script>
 </body>
 </html>
