@@ -6,11 +6,19 @@
     <title>Personal Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com; connect-src https://www.google-analytics.com;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6M5ERHWQ3H');
+    </script>
 </head>
 <body>
     <div class="sidebar">
@@ -120,10 +128,11 @@
             </section>
         </div>
     </div>
-    <div class="visitor-counter">
-        <p>Today's Visitors: <span id="today-count">0</span></p>
-        <p>Total Visitors: <span id="total-count">0</span></p>
+
+    <!-- Thêm nút thông tin -->
+    <div class="info-button" id="infoButton">!</div>
+    <div class="info-popup" id="infoPopup">
+        Last updated: <span id="lastUpdate">25/11/2024</span>
     </div>
-    <script src="counter.js"></script>
 </body>
 </html>
