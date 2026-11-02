@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="50%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" rx="20" fill="url(#bg2)"/>
+  <circle cx="680" cy="90" r="150" fill="#ffffff" opacity="0.06"/>
+  <circle cx="120" cy="420" r="170" fill="#a855f7" opacity="0.12"/>
+
+  <!-- Dashboard Card -->
+  <rect x="60" y="45" width="680" height="390" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  
+  <!-- Top Bar -->
+  <rect x="60" y="45" width="680" height="58" rx="16" fill="#f8fafc"/>
+  <text x="90" y="80" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="bold" fill="#1d4ed8">🎓 Công cụ tính điểm GPA &amp; Dự phóng CPA Đại học</text>
+  <rect x="575" y="60" width="140" height="28" rx="14" fill="#eff6ff" stroke="#bfdbfe"/>
+  <text x="645" y="79" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1d4ed8" text-anchor="middle">🏫 30+ Trường ĐH</text>
+
+  <!-- GPA & CPA Score Cards -->
+  <rect x="85" y="120" width="200" height="105" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <text x="185" y="145" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">GPA HỌC KỲ HIỆN TẠI</text>
+  <text x="185" y="185" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="bold" fill="#1d4ed8" text-anchor="middle">3.65</text>
+  <text x="185" y="210" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">Xếp loại: Xuất sắc</text>
+
+  <rect x="300" y="120" width="200" height="105" rx="12" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="400" y="145" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#3730a3" text-anchor="middle">CPA TÍCH LŨY TOÀN KHÓA</text>
+  <text x="400" y="185" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="bold" fill="#4338ca" text-anchor="middle">3.42</text>
+  <text x="400" y="210" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1d4ed8" text-anchor="middle">Xếp loại: Giỏi (92 TC)</text>
+
+  <!-- AI Advisor Card -->
+  <rect x="515" y="120" width="200" height="105" rx="12" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+  <text x="615" y="145" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#6b21a8" text-anchor="middle">✨ AI ADVISOR</text>
+  <text x="615" y="172" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="bold" fill="#7e22ce" text-anchor="middle">Gemini 3.8 Flash</text>
+  <text x="615" y="194" font-family="Inter, Arial, sans-serif" font-size="11" fill="#581c87" text-anchor="middle">Phân tích bảng điểm &amp;</text>
+  <text x="615" y="210" font-family="Inter, Arial, sans-serif" font-size="11" fill="#581c87" text-anchor="middle">Chiến lược học tập</text>
+
+  <!-- Course Rows Mockup -->
+  <rect x="85" y="242" width="630" height="42" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="102" y="268" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#334155">Lập trình C++</text>
+  <text x="290" y="268" font-family="Inter, Arial, sans-serif" font-size="13" fill="#475569">4 Tín chỉ</text>
+  <text x="400" y="268" font-family="Inter, Arial, sans-serif" font-size="13" fill="#475569">TK: 9.0 | CK: 8.5</text>
+  <rect x="565" y="251" width="135" height="24" rx="6" fill="#d1fae5"/>
+  <text x="632" y="267" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#065f46" text-anchor="middle">TK10: 8.7 → A (4.0)</text>
+
+  <rect x="85" y="294" width="630" height="42" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <text x="102" y="320" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#334155">Cấu trúc dữ liệu &amp; GT</text>
+  <text x="290" y="320" font-family="Inter, Arial, sans-serif" font-size="13" fill="#475569">3 Tín chỉ</text>
+  <text x="400" y="320" font-family="Inter, Arial, sans-serif" font-size="13" fill="#475569">TK: 8.5 | CK: 8.0</text>
+  <rect x="565" y="303" width="135" height="24" rx="6" fill="#dbeafe"/>
+  <text x="632" y="319" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e40af" text-anchor="middle">TK10: 8.2 → B+ (3.5)</text>
+
+  <!-- Bottom Feature Pills -->
+  <rect x="85" y="358" width="145" height="32" rx="8" fill="#ecfdf5" stroke="#6ee7b7"/>
+  <text x="157" y="379" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#047857" text-anchor="middle">📊 Nhập / Xuất Excel</text>
+
+  <rect x="242" y="358" width="160" height="32" rx="8" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="322" y="379" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#1d4ed8" text-anchor="middle">🎯 Đặt mục tiêu CPA</text>
+
+  <rect x="414" y="358" width="150" height="32" rx="8" fill="#fef3c7" stroke="#fcd34d"/>
+  <text x="489" y="379" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#b45309" text-anchor="middle">💾 Tự động lưu trữ</text>
+
+  <rect x="576" y="358" width="139" height="32" rx="8" fill="#f3e8ff" stroke="#d8b4fe"/>
+  <text x="645" y="379" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#6b21a8" text-anchor="middle">⚡ Netlify Functions</text>
+</svg>
+

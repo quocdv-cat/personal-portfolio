@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com; connect-src https://www.google-analytics.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <title>Dong Van Quoc | Software Engineering Portfolio</title>
+    <meta name="description" content="Personal Portfolio of Dong Van Quoc — Software Engineering student at Electric Power University (EPU), building practical web applications, automation bots, and AI-integrated tools.">
+    <meta property="og:title" content="Dong Van Quoc — Software Engineering Portfolio">
+    <meta property="og:description" content="Explore software projects by Dong Van Quoc, including the University GPA & CPA Calculator with Gemini AI Advisor and AIO TikTok Downloader Telegram Bot.">
+    <meta property="og:type" content="website">
+    <!-- Security Policy (CSP valid in meta tag; frame-ancestors/X-Frame-Options belong in HTTP headers) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com; connect-src 'self' https://www.google-analytics.com https://formsubmit.co;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6M5ERHWQ3H"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -21,120 +22,371 @@
     </script>
 </head>
 <body>
-    <div class="sidebar">
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-        <img src="./images/PXL_20241108_043628009.jpg" alt="Profile Picture" class="profile-img">
-        <div class="basic-info">
-            <h1 class="full-name">Dong Van Quoc</h1>
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="sidebar-mobile-bar">
+                <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="profile-img-wrapper">
+                <img src="./images/PXL_20241108_043628009.jpg" alt="Dong Van Quoc Profile Picture" class="profile-img">
+                <span class="status-indicator" title="Available for projects &amp; internships"></span>
+            </div>
+
+            <div class="basic-info">
+                <h1 class="full-name">Dong Van Quoc</h1>
+                <span class="role-badge"><i class="fas fa-code"></i> Software Engineering</span>
+                <p class="university-tag">Electric Power University (EPU)</p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/quocdv-cat" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub Profile" title="GitHub: @quocdv-cat">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://t.me/paws_down_tiktok_bot" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Telegram Bot" title="Telegram Bot: @paws_down_tiktok_bot">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="mailto:dongquochn@gmail.com" class="social-btn" aria-label="Send Email" title="Email: dongquochn@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:dongquochn@gmail.com">dongquochn@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>(+84) 962 820 470</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Hanoi, Vietnam</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://github.com/quocdv-cat" target="_blank" rel="noopener noreferrer">github.com/quocdv-cat</a>
+                </div>
+            </div>
         </div>
-        <div class="contact-info">
-            <p>Email: dongqu****@email.com</p>
-            <p>Phone: (+84) 962 820 ***</p>
-            <p>Address: Hanoi, Vietnam</p>
+
+        <div class="sidebar-footer">
+            <p>&copy; 2026 Dong Van Quoc</p>
         </div>
-    </div>
+    </aside>
 
     <div class="main-content">
-        <nav class="navigation">
-            <ul>
-                <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
-                <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
-                <li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
-                <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
+        <nav class="navigation" id="mainNav" aria-label="Main Navigation">
+            <div class="nav-header-row">
+                <ul>
+                    <li><a href="#about" class="active"><i class="fas fa-user"></i> About</a></li>
+                    <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+                    <li><a href="#projects"><i class="fas fa-code-branch"></i> Projects</a></li>
+                    <li><a href="#skills"><i class="fas fa-tools"></i> Skills</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </div>
+            <button type="button" class="theme-toggle" aria-label="Switch color theme">
+                <i class="fas fa-moon"></i>
+                <span class="theme-label">Dark Mode</span>
+            </button>
         </nav>
 
-        <div class="container">
+        <main class="container">
+            <!-- ABOUT / HERO SECTION -->
             <section id="about">
-                <h2>About Me</h2>
-                <p>
-                    2,3 con mèoo.
-                </p>
+                <h2><i class="fas fa-user-astronaut"></i> About Me</h2>
+                <div class="hero-intro">
+                    <span class="hero-greeting">
+                        <i class="fas fa-terminal"></i> Hello, I'm Dong Van Quoc (Quoc Dong)
+                    </span>
+                    <p class="hero-title">
+                        Software Engineering Student building <span>practical web utilities, automation bots, and AI-powered tools</span>.
+                    </p>
+                    <p class="hero-description">
+                        I am currently pursuing a degree in Software Engineering at <strong>Electric Power University (EPU)</strong> in Hanoi, Vietnam. I enjoy turning real-world student and everyday problems into clean, reliable software—ranging from full-featured client/serverless web applications for academic grade planning across 30+ Vietnamese universities to resilient Python Telegram bots with multi-provider API failover.
+                    </p>
+
+                    <div class="hero-highlights">
+                        <div class="highlight-card">
+                            <i class="fas fa-laptop-code"></i>
+                            <div>
+                                <h3>Web &amp; Serverless Apps</h3>
+                                <p>Interactive JavaScript ES6+ apps, SheetJS Excel processing, and Netlify serverless functions.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-robot"></i>
+                            <div>
+                                <h3>Automation &amp; Bots</h3>
+                                <p>Python Telegram bots with REST API integration, multi-provider failover, and RAM streaming.</p>
+                            </div>
+                        </div>
+                        <div class="highlight-card">
+                            <i class="fas fa-brain"></i>
+                            <div>
+                                <h3>AI Integration</h3>
+                                <p>Practical integration of Google Gemini APIs for personalized student academic advising.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn">
+                            <i class="fas fa-folder-open"></i> Explore Featured Projects
+                        </a>
+                        <a href="https://github.com/quocdv-cat" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                            <i class="fab fa-github"></i> View GitHub Profile
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-paper-plane"></i> Get In Touch
+                        </a>
+                    </div>
+                </div>
             </section>
 
+            <!-- EDUCATION SECTION -->
             <section id="education">
-                <h2>Education</h2>
+                <h2><i class="fas fa-graduation-cap"></i> Education</h2>
                 <div class="education-item">
                     <div class="education-header">
-                        <h3>Electric Power University</h3>
-                        <span class="education-date"><i>8/2024 - Present</i></span>
+                        <h3>Electric Power University (Đại học Điện Lực - EPU)</h3>
+                        <span class="education-date"><i class="far fa-calendar-alt"></i> 08/2024 - Present</span>
                     </div>
-                    <p><i>Software Engineer</i></p>
+                    <p class="education-major">Major: Software Engineering (Kỹ thuật Phần mềm)</p>
+                    <ul class="education-details">
+                        <li>Focusing on core computer science foundations: C/C++ programming, Data Structures &amp; Algorithms, Object-Oriented Programming, and Web Development.</li>
+                        <li>Building practical software products for university students, including the EPU &amp; 30+ Vietnamese Universities GPA/CPA Calculator and automated Telegram utilities.</li>
+                    </ul>
                 </div>
             </section>
 
+            <!-- PROJECTS SECTION -->
             <section id="projects">
-                <h2>Projects</h2>
+                <h2><i class="fas fa-code"></i> Featured Projects</h2>
+                <div class="projects-header-controls">
+                    <p class="projects-subtitle">Real-world applications integrated with full source code, documentation, and live interactive demos.</p>
+                    <div class="project-filters" role="group" aria-label="Filter projects by technology">
+                        <button type="button" class="filter-btn active" data-filter="all">All Projects (3)</button>
+                        <button type="button" class="filter-btn" data-filter="web">Web &amp; AI</button>
+                        <button type="button" class="filter-btn" data-filter="python">Python &amp; Bot</button>
+                        <button type="button" class="filter-btn" data-filter="frontend">Frontend UI</button>
+                    </div>
+                </div>
+
                 <div class="projects-grid">
-                    <div class="project-card">
-                        <a href="./projects/project1.html">
-                            <h3>Project 1</h3>
-                            <p>Description of your project</p>
-                        </a>
-                    </div>
+                    <!-- Project 1: AIO-down -->
+                    <article class="project-card" data-category="python">
+                        <div class="project-card-thumb">
+                            <img src="./images/aio-down-preview.svg" alt="AIO-down TikTok Downloader Telegram Bot Preview">
+                            <span class="project-status-badge">● Telegram Bot</span>
+                        </div>
+                        <div class="project-card-body">
+                            <span class="project-card-category">Python • Automation Bot</span>
+                            <h3>AIO-down — TikTok Downloader Bot</h3>
+                            <p>Automated Telegram bot (@paws_down_tiktok_bot) that downloads high-definition TikTok videos without watermarks, multi-photo slide albums, and MP3 audio using a dual-provider failover architecture.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python 3</span>
+                                <span class="tech-tag">pyTelegramBotAPI</span>
+                                <span class="tech-tag">Flask</span>
+                                <span class="tech-tag">REST API</span>
+                            </div>
+                            <div class="project-card-actions">
+                                <a href="./projects/project1.html" class="card-btn card-btn-primary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                                <a href="https://t.me/paws_down_tiktok_bot" target="_blank" rel="noopener noreferrer" class="card-btn card-btn-secondary">
+                                    <i class="fab fa-telegram-plane"></i> Try Bot
+                                </a>
+                                <a href="https://github.com/quocdv-cat/AIO-downloader-tele" target="_blank" rel="noopener noreferrer" class="card-btn card-btn-secondary">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
-                    <div class="project-card">
-                        <a href="./projects/project2.html">
-                            <h3>Project 2</h3>
-                            <p>Description of your project</p>
-                        </a>
-                    </div>
+                    <!-- Project 2: avg_gpa -->
+                    <article class="project-card" data-category="web frontend">
+                        <div class="project-card-thumb">
+                            <img src="./images/avg-gpa-preview.svg" alt="University GPA and CPA Calculator Preview">
+                            <span class="project-status-badge">● Live App</span>
+                        </div>
+                        <div class="project-card-body">
+                            <span class="project-card-category">Web App • Serverless AI</span>
+                            <h3>University GPA &amp; CPA Calculator</h3>
+                            <p>Comprehensive grade calculator &amp; CPA goal planner supporting 30+ Vietnamese universities (EPU, HUST, NEU, VNU, FTU...) with Excel (.xlsx) import/export and Gemini 3.8 Flash AI study advisor.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">JavaScript ES6+</span>
+                                <span class="tech-tag">Tailwind CSS</span>
+                                <span class="tech-tag">SheetJS (XLSX)</span>
+                                <span class="tech-tag">Gemini API</span>
+                                <span class="tech-tag">Netlify Functions</span>
+                            </div>
+                            <div class="project-card-actions">
+                                <a href="./projects/project2.html" class="card-btn card-btn-primary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                                <a href="./projects/avg_gpa/index.html" target="_blank" class="card-btn card-btn-secondary">
+                                    <i class="fas fa-play"></i> Open App
+                                </a>
+                                <a href="https://avg-gpa.netlify.app/" target="_blank" rel="noopener noreferrer" class="card-btn card-btn-secondary">
+                                    <i class="fas fa-external-link-alt"></i> Live
+                                </a>
+                            </div>
+                        </div>
+                    </article>
 
-                    <div class="project-card">
-                        <a href="./projects/project3.html">
-                            <h3>Project 3</h3>
-                            <p>Description of your project</p>
-                        </a>
-                    </div>
+                    <!-- Project 3: Personal Portfolio -->
+                    <article class="project-card" data-category="web frontend">
+                        <div class="project-card-thumb">
+                            <img src="./images/portfolio-preview.svg" alt="Personal Developer Portfolio System Preview">
+                            <span class="project-status-badge">● Active</span>
+                        </div>
+                        <div class="project-card-body">
+                            <span class="project-card-category">Frontend Architecture</span>
+                            <h3>Personal Developer Portfolio</h3>
+                            <p>Responsive, security-hardened personal portfolio website engineered with semantic HTML5, custom CSS variables (Dark/Light mode), interactive project filtering, and embedded project workspaces.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3 Grid/Flex</span>
+                                <span class="tech-tag">Vanilla JS</span>
+                                <span class="tech-tag">CSP Security</span>
+                            </div>
+                            <div class="project-card-actions">
+                                <a href="./projects/project3.html" class="card-btn card-btn-primary">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </a>
+                                <a href="https://github.com/quocdv-cat" target="_blank" rel="noopener noreferrer" class="card-btn card-btn-secondary">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </section>
 
+            <!-- SKILLS SECTION -->
             <section id="skills">
-                <h2>Skills</h2>
-                <div class="skills-list">
-                    <span class="skill-item">C</span>
-                    <span class="skill-item">C++</span>
-                    <span class="skill-item">HTML</span>
-                    <span class="skill-item">CSS</span>
+                <h2><i class="fas fa-tools"></i> Skills &amp; Technologies</h2>
+                <div class="skills-categories">
+                    <div class="skill-group">
+                        <h3><i class="fas fa-terminal"></i> Programming Languages</h3>
+                        <div class="skills-list">
+                            <span class="skill-item">C</span>
+                            <span class="skill-item">C++</span>
+                            <span class="skill-item">Python</span>
+                            <span class="skill-item">JavaScript (ES6+)</span>
+                            <span class="skill-item">HTML5 &amp; CSS3</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3><i class="fas fa-layer-group"></i> Frameworks &amp; Libraries</h3>
+                        <div class="skills-list">
+                            <span class="skill-item">Tailwind CSS</span>
+                            <span class="skill-item">Flask</span>
+                            <span class="skill-item">pyTelegramBotAPI</span>
+                            <span class="skill-item">SheetJS (XLSX)</span>
+                            <span class="skill-item">Requests</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-group">
+                        <h3><i class="fas fa-cloud"></i> Cloud, APIs &amp; Tools</h3>
+                        <div class="skills-list">
+                            <span class="skill-item">Google Gemini API</span>
+                            <span class="skill-item">Netlify Functions</span>
+                            <span class="skill-item">Git &amp; GitHub</span>
+                            <span class="skill-item">RESTful APIs</span>
+                            <span class="skill-item">LocalStorage State</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
+            <!-- CONTACT SECTION -->
             <section id="contact">
-                <h2>Contact</h2>
-                <div class="contact-container">
-                    <form action="https://formsubmit.co/dongquochn@gmail.com" method="POST">
-                        <div class="form-group">
-                            <label for="name">Full Name:</label>
-                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                <h2><i class="fas fa-envelope"></i> Contact Me</h2>
+                <div class="contact-layout">
+                    <div class="contact-cards">
+                        <div class="contact-card-item">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <div>
+                                <h3>Email</h3>
+                                <a href="mailto:dongquochn@gmail.com">dongquochn@gmail.com</a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                        <div class="contact-card-item">
+                            <div class="contact-card-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div>
+                                <h3>GitHub</h3>
+                                <a href="https://github.com/quocdv-cat" target="_blank" rel="noopener noreferrer">github.com/quocdv-cat</a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="subject">Subject:</label>
-                            <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+
+                        <div class="contact-card-item">
+                            <div class="contact-card-icon">
+                                <i class="fab fa-telegram-plane"></i>
+                            </div>
+                            <div>
+                                <h3>Telegram Bot Showcase</h3>
+                                <a href="https://t.me/paws_down_tiktok_bot" target="_blank" rel="noopener noreferrer">@paws_down_tiktok_bot</a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Message:</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+
+                        <div class="contact-card-item">
+                            <div class="contact-card-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Location</h3>
+                                <p>Hanoi, Vietnam</p>
+                            </div>
                         </div>
-                        <button type="submit" class="submit-button">
-                            <i class="fas fa-paper-plane"></i> Send
-                        </button>
-                    </form>
+                    </div>
+
+                    <div class="contact-container">
+                        <form action="https://formsubmit.co/dongquochn@gmail.com" method="POST">
+                            <div class="form-group">
+                                <label for="name">Full Name:</label>
+                                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject:</label>
+                                <input type="text" id="subject" name="subject" placeholder="Enter subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message:</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </section>
-        </div>
+        </main>
     </div>
 
-    <!-- Thêm nút thông tin -->
-    <div class="info-button" id="infoButton">!</div>
-    <div class="info-popup" id="infoPopup">
-        Last updated: <span id="lastUpdate">25/11/2024</span>
+    <!-- Accessible Portfolio Info Popup -->
+    <button type="button" class="info-button" id="infoButton" aria-label="Portfolio build information" title="Portfolio Info">!</button>
+    <div class="info-popup" id="infoPopup" role="status">
+        Last updated: <span id="lastUpdate">02/11/2026</span>
     </div>
+
+    <script src="script.js" defer></script>
 </body>
 </html>

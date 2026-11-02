@@ -3,55 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 3 - Portfolio</title>
-    <link rel="stylesheet" href="../styles.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <title>Personal Developer Portfolio Architecture | Dong Van Quoc</title>
+    <meta name="description" content="Technical overview of Dong Van Quoc's personal portfolio website: responsive layout, Dark/Light mode system, CSP security, and modular project integration.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <div class="project-detail project-3">
-        <a href="../index.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Back to Portfolio
-        </a>
-        
-        <h1><i class="fas fa-project-diagram"></i> Project 3</h1>
-        
-        <div class="project-content">
-            <div class="project-image">
-                <img src="../images/project3-image.jpg" alt="Project 3 Screenshot">
+        <div class="detail-topbar">
+            <a href="../index.html#projects" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+            <button type="button" class="theme-toggle" aria-label="Switch color theme">
+                <i class="fas fa-moon"></i>
+                <span class="theme-label">Dark Mode</span>
+            </button>
+        </div>
+
+        <header class="project-detail-header">
+            <h1><i class="fas fa-laptop-code"></i> Personal Developer Portfolio Hub</h1>
+            <p>A lightweight, zero-dependency, security-hardened personal portfolio designed to showcase software engineering projects, technical skills, and interactive web applications.</p>
+            <div class="project-meta-row">
+                <span class="meta-pill status-live"><i class="fas fa-check-circle"></i> Production Ready</span>
+                <span class="meta-pill"><i class="fas fa-user-cog"></i> Role: Frontend Architect &amp; Developer</span>
+                <span class="meta-pill"><i class="fas fa-bolt"></i> Zero Build Step / Pure Web Standards</span>
             </div>
-            
+        </header>
+
+        <div class="project-content">
+            <div class="project-image-box">
+                <div class="project-image">
+                    <img src="../images/portfolio-preview.svg" alt="Personal Portfolio Architecture Preview">
+                </div>
+
+                <div class="architecture-box">
+                    <h3><i class="fas fa-sitemap"></i> Repository Architecture</h3>
+                    <pre>personal-portfolio-main/
+├── index.html          # Main portfolio entry point
+├── styles.css          # CSS Custom Properties &amp; responsive design system
+├── script.js           # Theme manager, mobile nav, filter &amp; scroll-spy
+├── images/             # Profile photo &amp; SVG project thumbnails
+└── projects/
+    ├── project1.html   # AIO-down case study page
+    ├── project2.html   # avg_gpa case study page
+    ├── project3.html   # Portfolio architecture page
+    ├── AIO-down/       # Integrated Python Telegram Bot source
+    └── avg_gpa/        # Integrated GPA/CPA Calculator web app</pre>
+                </div>
+            </div>
+
             <div class="project-info">
-                <h2><i class="fas fa-info-circle"></i> Project Description</h2>
-                <p>[Detailed project description in English...]</p>
-                
+                <h2><i class="fas fa-info-circle"></i> Project Overview</h2>
+                <p>
+                    Designed as a central engineering hub during my Software Engineering studies at <strong>Electric Power University (EPU)</strong>, this portfolio organizes my software projects, technical stack, and contact channels in a clean, fast-loading interface.
+                </p>
+                <p>
+                    Instead of relying on heavy frontend frameworks for a content-driven portfolio, the system uses semantic HTML5, modern CSS Grid/Flexbox with CSS Custom Properties, and modular Vanilla JavaScript—achieving instant page loads while hosting standalone sub-projects directly inside the <code>./projects/</code> directory.
+                </p>
+
                 <h2><i class="fas fa-laptop-code"></i> Technologies Used</h2>
                 <div class="skills-list">
-                    <span class="skill-item">Technology 1</span>
-                    <span class="skill-item">Technology 2</span>
-                    <span class="skill-item">Technology 3</span>
+                    <span class="skill-item">Semantic HTML5</span>
+                    <span class="skill-item">CSS3 Custom Properties</span>
+                    <span class="skill-item">CSS Grid &amp; Flexbox</span>
+                    <span class="skill-item">Vanilla JavaScript (ES6+)</span>
+                    <span class="skill-item">Content Security Policy (CSP)</span>
+                    <span class="skill-item">FormSubmit Integration</span>
                 </div>
-                
-                <h2><i class="fas fa-star"></i> Key Features</h2>
+
+                <h2><i class="fas fa-star"></i> Key Architectural Features</h2>
                 <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Feature 1</li>
-                    <li><i class="fas fa-check"></i> Feature 2</li>
-                    <li><i class="fas fa-check"></i> Feature 3</li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Persistent Dark &amp; Light Theme System:</strong> Respects OS-level <code>prefers-color-scheme</code> preferences by default while allowing manual one-click toggling saved in <code>localStorage</code>.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Interactive Project Filtering &amp; Case Studies:</strong> Filter projects by domain (Web &amp; AI, Python &amp; Bot, Frontend UI) and inspect dedicated architectural breakdown pages for each project.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Sub-Project Integration:</strong> Hosts both standalone web applications (<code>avg_gpa</code>) and backend/bot repositories (<code>AIO-down</code>) under <code>./projects/</code> without dependency collisions.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Responsive Sidebar &amp; Scroll-Spy Navigation:</strong> Fixed developer profile sidebar on desktop that adapts into a collapsible accessible navigation bar on tablet and mobile viewports.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Content Security Policy (CSP) Hardening:</strong> Restricts script, style, font, and connection origins to trusted endpoints only.</span></li>
                 </ul>
-                
+
                 <div class="project-links">
-                    <a href="[link-github]" target="_blank" class="btn">
-                        <i class="fab fa-github"></i> GitHub Repository
+                    <a href="../index.html" class="btn">
+                        <i class="fas fa-home"></i> Back to Home Page
                     </a>
-                    <a href="[link-demo]" target="_blank" class="btn">
-                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    <a href="https://github.com/quocdv-cat" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        <i class="fab fa-github"></i> GitHub Profile (@quocdv-cat)
                     </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="../script.js" defer></script>
 </body>
-</html> 
+</html>

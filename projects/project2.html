@@ -3,55 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 2 - Portfolio</title>
-    <link rel="stylesheet" href="../styles.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <title>University GPA &amp; CPA Calculator | Dong Van Quoc</title>
+    <meta name="description" content="Detailed case study of the University GPA & CPA Calculator supporting 30+ Vietnamese universities with Excel import/export and Gemini 3.8 Flash AI study advisor.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <div class="project-detail project-2">
-        <a href="../index.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Back to Portfolio
-        </a>
-        
-        <h1><i class="fas fa-project-diagram"></i> Project 2</h1>
-        
-        <div class="project-content">
-            <div class="project-image">
-                <img src="../images/project2-image.jpg" alt="Project 2 Screenshot">
+        <div class="detail-topbar">
+            <a href="../index.html#projects" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+            <button type="button" class="theme-toggle" aria-label="Switch color theme">
+                <i class="fas fa-moon"></i>
+                <span class="theme-label">Dark Mode</span>
+            </button>
+        </div>
+
+        <header class="project-detail-header">
+            <h1><i class="fas fa-calculator"></i> University GPA &amp; CPA Calculator + AI Academic Advisor</h1>
+            <p>Full-featured academic grade calculator, multi-semester CPA manager, graduation goal planner, and AI-powered study advisor tailored for 30+ universities in Vietnam.</p>
+            <div class="project-meta-row">
+                <span class="meta-pill status-live"><i class="fas fa-globe"></i> Live Deployment: avg-gpa.netlify.app</span>
+                <span class="meta-pill"><i class="fas fa-play-circle"></i> Local Integrated App Available</span>
+                <span class="meta-pill"><i class="fas fa-folder"></i> Integrated Path: ./projects/avg_gpa/</span>
             </div>
-            
-            <div class="project-info">
-                <h2><i class="fas fa-info-circle"></i> Project Description</h2>
-                <p>[Detailed project description in English...]</p>
-                
-                <h2><i class="fas fa-laptop-code"></i> Technologies Used</h2>
-                <div class="skills-list">
-                    <span class="skill-item">Technology 1</span>
-                    <span class="skill-item">Technology 2</span>
-                    <span class="skill-item">Technology 3</span>
+        </header>
+
+        <div class="project-content">
+            <div class="project-image-box">
+                <div class="project-image">
+                    <img src="../images/avg-gpa-preview.svg" alt="University GPA and CPA Calculator Preview">
                 </div>
-                
-                <h2><i class="fas fa-star"></i> Key Features</h2>
+
+                <div class="architecture-box">
+                    <h3><i class="fas fa-sitemap"></i> Source Code Structure</h3>
+                    <pre>projects/avg_gpa/
+├── index.html          # Responsive UI layout (Tailwind CSS + Inter font)
+├── script.js           # 30+ university scales, GPA/CPA engine, XLSX &amp; AI client
+├── style.css           # Custom animations, prose formatting &amp; tab styling
+├── README.md           # Project documentation
+└── netlify/
+    └── functions/
+        └── call-gemini.js  # Serverless proxy to Gemini 3.8 Flash API</pre>
+                </div>
+            </div>
+
+            <div class="project-info">
+                <h2><i class="fas fa-info-circle"></i> Project Overview &amp; Problem Solved</h2>
+                <p>
+                    Vietnamese universities under the credit-based training system use differing conversion scales from the 10-point scale to letter grades (A+, A, B+, B...) and the 4.0 GPA scale (for example, HUST, NEU, VNU, FTU, EPU, and RMIT each have distinct grade thresholds and weights).
+                </p>
+                <p>
+                    <strong>avg_gpa</strong> provides a unified, accurate web application where students can calculate semester GPA, track cumulative multi-semester CPA, import/export transcripts via Excel, simulate future graduation targets, and receive personalized study strategies from <strong>Google Gemini 3.8 Flash</strong>.
+                </p>
+
+                <h2><i class="fas fa-laptop-code"></i> Technology Stack</h2>
+                <div class="skills-list">
+                    <span class="skill-item">HTML5</span>
+                    <span class="skill-item">Tailwind CSS</span>
+                    <span class="skill-item">JavaScript (ES6+)</span>
+                    <span class="skill-item">SheetJS (xlsx 0.18.5)</span>
+                    <span class="skill-item">Netlify Serverless Functions</span>
+                    <span class="skill-item">Google Gemini 3.8 Flash API</span>
+                    <span class="skill-item">LocalStorage State</span>
+                </div>
+
+                <h2><i class="fas fa-star"></i> Key Technical Features</h2>
                 <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Feature 1</li>
-                    <li><i class="fas fa-check"></i> Feature 2</li>
-                    <li><i class="fas fa-check"></i> Feature 3</li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>30+ University Grading Scales:</strong> Built-in accurate conversion rules for EPU, HUST, NEU, VNU, FTU, PTIT, HaUI, RMIT, FPTU, and more, with instant search and live conversion table preview.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>3 Flexible Input Modes &amp; Per-Course Weights:</strong> Supports Component Scores (2 or 3 components with customizable % weights per course), Direct 10-point Score, or Letter Grade selection, with real-time badge previews on every row.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Multi-Semester CPA &amp; Auto-Save:</strong> Add, rename, or delete semesters while automatically persisting state in <code>localStorage</code> (<code>avg_gpa_app_state_v2</code>).</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Excel (.xlsx) Import &amp; Export:</strong> Parse 3-column or 4-column student transcripts via SheetJS, download sample templates, and export comprehensive multi-semester GPA/CPA summary workbooks.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Graduation CPA Goal Calculator:</strong> Computes the exact minimum GPA required across remaining credits to achieve Distinction (3.60), Very Good (3.20), or Good (2.50), alerting students when course retakes are mathematically necessary.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Serverless Gemini 3.8 Flash AI Advisor:</strong> Securely proxies transcript context through a Netlify Function (<code>/.netlify/functions/call-gemini</code>) and renders AI feedback using a custom XSS-safe Markdown parser.</span></li>
                 </ul>
-                
+
                 <div class="project-links">
-                    <a href="[link-github]" target="_blank" class="btn">
-                        <i class="fab fa-github"></i> GitHub Repository
+                    <a href="./avg_gpa/index.html" target="_blank" class="btn btn-success">
+                        <i class="fas fa-play"></i> Launch Integrated Web App
                     </a>
-                    <a href="[link-demo]" target="_blank" class="btn">
-                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    <a href="https://avg-gpa.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fas fa-external-link-alt"></i> Live Demo (Netlify)
+                    </a>
+                    <a href="https://github.com/quocdv-cat/avg-gpa" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                        <i class="fab fa-github"></i> GitHub Repository
                     </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="../script.js" defer></script>
 </body>
-</html> 
+</html>

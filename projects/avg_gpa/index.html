@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6089437341639692"
+        crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công cụ tính điểm GPA &amp; Dự phóng CPA Đại học</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Liên kết đến file CSS ngoài -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-700">Công cụ tính điểm GPA &amp; CPA</h1>
+            <p class="text-gray-600 mt-2">Tính điểm trung bình học kỳ, tích lũy toàn khóa, đặt mục tiêu học tập và nhận tư vấn từ AI (Gemini 3.8 Flash)</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <main class="lg:col-span-2 space-y-6">
+                <!-- Khối chính: Quản lý học kỳ và môn học -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <!-- Thanh quản lý học kỳ & Trạng thái lưu tự động -->
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 pb-4 mb-5">
+                        <div class="flex flex-wrap items-center gap-2" id="semester-tabs-container">
+                            <!-- Các tab học kỳ sẽ được render tự động tại đây -->
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button id="add-semester-btn" type="button"
+                                class="text-sm bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 font-medium py-1.5 px-3 rounded-lg transition flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                                </svg>
+                                Thêm học kỳ
+                            </button>
+                            <button id="reset-data-btn" type="button" title="Xóa toàn bộ dữ liệu đã lưu và làm mới"
+                                class="text-sm text-gray-500 hover:text-red-600 hover:bg-red-50 py-1.5 px-2.5 rounded-lg transition border border-transparent hover:border-red-200">
+                                Làm mới
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tiêu đề danh sách môn & Nhập/Xuất Excel -->
+                    <div class="flex flex-wrap justify-between items-start sm:items-center mb-4 gap-4">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h2 id="current-semester-title" class="text-xl font-semibold text-gray-700">Danh sách môn học</h2>
+                                <button id="rename-semester-btn" type="button" title="Đổi tên học kỳ"
+                                    class="text-gray-400 hover:text-blue-600 p-1 rounded transition">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                    </svg>
+                                </button>
+                                <button id="delete-semester-btn" type="button" title="Xóa học kỳ hiện tại"
+                                    class="text-gray-400 hover:text-red-600 p-1 rounded transition hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <span id="autosave-status" class="text-xs text-emerald-600 font-medium">✓ Tự động lưu dữ liệu trên trình duyệt</span>
+                        </div>
+
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button id="import-excel-btn" type="button"
+                                class="bg-teal-600 text-white text-sm font-semibold py-2 px-3.5 rounded-lg hover:bg-teal-700 transition shadow-sm flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                                </svg>
+                                Nhập Excel
+                            </button>
+                            <button id="export-excel-btn" type="button"
+                                class="bg-emerald-600 text-white text-sm font-semibold py-2 px-3.5 rounded-lg hover:bg-emerald-700 transition shadow-sm flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                </svg>
+                                Xuất Excel
+                            </button>
+                            <input type="file" id="excel-file-input" class="hidden" accept=".xlsx, .xls">
+                            <button id="add-course-btn" type="button"
+                                class="bg-blue-600 text-white text-sm font-semibold py-2 px-3.5 rounded-lg hover:bg-blue-700 transition shadow-sm flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                </svg>
+                                Thêm môn
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between text-xs text-gray-500 mb-4 gap-2">
+                        <p>
+                            * File Excel hỗ trợ 4 cột (<strong>Tên môn, Số TC, TB Thường kỳ, Điểm cuối kỳ</strong>) hoặc 3 cột (<strong>Tên môn, Số TC, Điểm hệ 10</strong>).
+                        </p>
+                        <button id="download-sample-btn" type="button" class="text-blue-600 hover:underline font-medium shrink-0">
+                            ⬇ Tải file Excel mẫu
+                        </button>
+                    </div>
+
+                    <!-- Tùy chọn Chế độ nhập & Tỷ lệ điểm thành phần -->
+                    <div class="bg-gray-100 p-4 rounded-xl mb-6 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-3">
+                            <div>
+                                <span class="text-sm font-semibold text-gray-700 block mb-1">Chế độ nhập điểm mặc định:</span>
+                                <div class="inline-flex bg-gray-200 p-1 rounded-lg text-xs" id="input-mode-selector">
+                                    <button type="button" data-mode="component" class="mode-btn active py-1.5 px-3 rounded-md transition">
+                                        Điểm thành phần
+                                    </button>
+                                    <button type="button" data-mode="direct10" class="mode-btn py-1.5 px-3 rounded-md transition text-gray-600 hover:text-gray-900">
+                                        Điểm tổng kết hệ 10
+                                    </button>
+                                    <button type="button" data-mode="letter" class="mode-btn py-1.5 px-3 rounded-md transition text-gray-600 hover:text-gray-900">
+                                        Điểm chữ (A, B+...)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col gap-1.5">
+                                <label class="inline-flex items-center text-xs text-gray-700 cursor-pointer select-none">
+                                    <input type="checkbox" id="round-grade10-checkbox" checked
+                                        class="rounded border-gray-300 text-blue-600 focus:ring-blue-500 mr-2 h-4 w-4">
+                                    <span>Làm tròn điểm hệ 10 (1 chữ số thập phân, VD: 8.45 &rarr; 8.5)</span>
+                                </label>
+                                <label id="enable-midterm-wrapper" class="inline-flex items-center text-xs text-gray-700 cursor-pointer select-none">
+                                    <input type="checkbox" id="enable-midterm-checkbox"
+                                        class="rounded border-gray-300 text-blue-600 focus:ring-blue-500 mr-2 h-4 w-4">
+                                    <span>Sử dụng 3 đầu điểm (Chuyên cần/TK1 + Giữa kỳ/TK2 + Cuối kỳ)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Khung tỷ lệ điểm thành phần chung -->
+                        <div id="weights-config-panel" class="border-t border-gray-200 pt-3">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xs font-semibold text-gray-600 uppercase tracking-wider">Tỷ lệ điểm thành phần mặc định (%)</h3>
+                                <span class="text-xs text-gray-500">Có thể bấm biểu tượng ⚙️ ở từng môn để chỉnh tỷ lệ riêng</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div>
+                                    <label for="regular-weight" class="block text-xs font-medium text-gray-700">Thường kỳ / CC (%)</label>
+                                    <input type="number" id="regular-weight" value="30" min="0" max="100"
+                                        class="w-full p-2 mt-1 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 bg-white">
+                                </div>
+                                <div id="midterm-weight-container" class="hidden">
+                                    <label for="midterm-weight" class="block text-xs font-medium text-gray-700">Giữa kỳ (%)</label>
+                                    <input type="number" id="midterm-weight" value="0" min="0" max="100"
+                                        class="w-full p-2 mt-1 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 bg-white">
+                                </div>
+                                <div>
+                                    <label for="final-weight" class="block text-xs font-medium text-gray-700">Cuối kỳ (%)</label>
+                                    <input type="number" id="final-weight" value="70" min="0" max="100"
+                                        class="w-full p-2 mt-1 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 bg-white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Danh sách các dòng môn học -->
+                    <div id="courses-container" class="space-y-3">
+                    </div>
+
+                    <!-- Nút Tính GPA -->
+                    <div class="mt-8 text-center">
+                        <button id="calculate-btn" type="button"
+                            class="bg-green-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-green-700 transition-all duration-300 shadow-lg text-lg">
+                            Tính GPA &amp; CPA
+                        </button>
+                    </div>
+
+                    <div id="error-message" class="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-center text-red-600 text-sm font-medium hidden"></div>
+
+                    <!-- Kết quả GPA Học kỳ & CPA Tích lũy -->
+                    <div id="result-container" class="mt-8 hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Kết quả Học kỳ hiện tại -->
+                            <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-xl shadow-sm text-center">
+                                <p class="text-sm font-medium text-blue-800 uppercase tracking-wide" id="semester-result-label">GPA Học kỳ hiện tại</p>
+                                <p id="gpa-result" class="text-4xl font-bold text-blue-700 my-2">0.00</p>
+                                <p class="text-sm text-gray-700">Xếp loại: <span id="classification-result" class="font-semibold text-blue-800"></span></p>
+                                <div class="mt-2 pt-2 border-t border-blue-100 flex justify-center gap-4 text-xs text-gray-600">
+                                    <span>Số TC học kỳ: <strong id="semester-credits-result">0</strong></span>
+                                    <span>TB hệ 10: <strong id="semester-grade10-result">0.00</strong></span>
+                                </div>
+                            </div>
+
+                            <!-- Kết quả CPA Tích lũy toàn khóa -->
+                            <div class="bg-indigo-50 border-l-4 border-indigo-500 p-5 rounded-xl shadow-sm text-center">
+                                <p class="text-sm font-medium text-indigo-800 uppercase tracking-wide">CPA Tích lũy (Tất cả học kỳ)</p>
+                                <p id="cpa-result" class="text-4xl font-bold text-indigo-700 my-2">0.00</p>
+                                <p class="text-sm text-gray-700">Xếp loại: <span id="cpa-classification-result" class="font-semibold text-indigo-800"></span></p>
+                                <div class="mt-2 pt-2 border-t border-indigo-100 flex justify-center gap-4 text-xs text-gray-600">
+                                    <span>Tổng TC tích lũy: <strong id="total-credits-result">0</strong></span>
+                                    <span>TB hệ 10: <strong id="cpa-grade10-result">0.00</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vùng chứa quảng cáo AdSense (Chỉ khởi tạo 1 lần sau khi có kết quả để tránh lỗi TagError) -->
+                    <div id="ad-container" class="hidden mt-6">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-6089437341639692"
+                             data-ad-slot="YOUR_AD_SLOT_ID"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                    </div>
+
+                    <!-- Tư vấn & Phân tích từ AI -->
+                    <div id="gemini-feedback-section" class="mt-6 text-center hidden">
+                        <button id="get-feedback-btn" type="button"
+                            class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold py-3 px-8 rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 shadow-lg text-base w-full max-w-md mx-auto">
+                            ✨ Nhận Phân tích &amp; Chiến lược Học tập từ AI
+                        </button>
+                        <div id="feedback-loading" class="hidden flex justify-center items-center p-8">
+                            <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-t-2 border-purple-600"></div>
+                            <p class="ml-4 text-gray-600">Gemini 3.8 Flash đang phân tích bảng điểm của bạn...</p>
+                        </div>
+                        <div id="feedback-result" class="hidden mt-4 bg-purple-50 border border-purple-200 p-6 rounded-xl shadow-inner text-left prose max-w-none">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khối tính năng mới: Công cụ Đặt Mục tiêu GPA / CPA (GPA Goal Calculator) -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b pb-3 mb-4">
+                        <div>
+                            <h2 class="text-xl font-semibold text-gray-800">🎯 Công cụ Đặt Mục tiêu CPA / Tốt nghiệp</h2>
+                            <p class="text-xs text-gray-500 mt-0.5">Tính điểm GPA trung bình cần đạt trong các kỳ tiếp theo để chạm mốc học lực mong muốn</p>
+                        </div>
+                        <button id="sync-goal-from-cpa-btn" type="button"
+                            class="text-xs bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200 font-medium py-1.5 px-3 rounded-lg transition">
+                            Đồng bộ từ CPA vừa tính
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+                        <div>
+                            <label for="goal-current-credits" class="block text-xs font-medium text-gray-700">Số TC đã tích lũy</label>
+                            <input type="number" id="goal-current-credits" min="0" step="1" placeholder="VD: 60"
+                                class="w-full p-2.5 mt-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="goal-current-cpa" class="block text-xs font-medium text-gray-700">CPA hiện tại (Hệ 4)</label>
+                            <input type="number" id="goal-current-cpa" min="0" max="4" step="0.01" placeholder="VD: 2.85"
+                                class="w-full p-2.5 mt-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="goal-remaining-credits" class="block text-xs font-medium text-gray-700">Số TC dự kiến học thêm</label>
+                            <input type="number" id="goal-remaining-credits" min="1" step="1" placeholder="VD: 45"
+                                class="w-full p-2.5 mt-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="goal-target-cpa" class="block text-xs font-medium text-gray-700">CPA mục tiêu (Hệ 4)</label>
+                            <input type="number" id="goal-target-cpa" min="0" max="4" step="0.01" value="3.20" placeholder="VD: 3.20"
+                                class="w-full p-2.5 mt-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+                            <span class="text-gray-500 mr-1">Chọn nhanh mục tiêu:</span>
+                            <button type="button" data-target="3.60" class="goal-preset-btn bg-green-50 text-green-700 hover:bg-green-100 border border-green-200 px-2.5 py-1 rounded-md font-medium transition">Xuất sắc (3.60)</button>
+                            <button type="button" data-target="3.20" class="goal-preset-btn bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 px-2.5 py-1 rounded-md font-medium transition">Giỏi (3.20)</button>
+                            <button type="button" data-target="2.50" class="goal-preset-btn bg-yellow-50 text-yellow-700 hover:bg-yellow-100 border border-yellow-200 px-2.5 py-1 rounded-md font-medium transition">Khá (2.50)</button>
+                        </div>
+                        <button id="calculate-goal-btn" type="button"
+                            class="bg-indigo-600 text-white text-sm font-semibold py-2 px-5 rounded-lg hover:bg-indigo-700 transition shadow">
+                            Tính mục tiêu
+                        </button>
+                    </div>
+
+                    <div id="goal-result-box" class="hidden mt-4 p-4 rounded-xl border text-sm">
+                    </div>
+                </div>
+            </main>
+
+            <!-- Cột bên phải: Chọn trường, Bảng quy đổi, Xếp loại -->
+            <aside class="lg:col-span-1 space-y-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Tùy chọn thang điểm</h3>
+                    <div>
+                        <label for="university-search" class="block text-sm font-medium text-gray-700">Tìm kiếm trường:</label>
+                        <input type="search" id="university-search" placeholder="Gõ tên hoặc mã trường (VD: HUST, NEU)..."
+                            class="mt-1 block w-full pl-3 pr-4 py-2 text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 rounded-lg mb-3">
+
+                        <label for="university-select" class="block text-sm font-medium text-gray-700">Đang áp dụng thang điểm:</label>
+                        <p id="selected-university-badge" class="text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200 rounded-md px-2.5 py-1.5 mt-1 mb-2"></p>
+                        <select id="university-select" size="8"
+                            class="mt-1 block w-full pl-3 pr-2 py-2 text-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 rounded-lg">
+                        </select>
+                    </div>
+                </div>
+
+                <div id="conversion-wrapper" class="bg-white p-6 rounded-2xl shadow-lg hidden">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Bảng quy đổi điểm</h3>
+                    <div id="loading-spinner" class="hidden flex justify-center items-center p-8">
+                        <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-t-2 border-blue-700"></div>
+                    </div>
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="p-2 font-semibold">Thang điểm 10</th>
+                                <th class="p-2 font-semibold">Điểm chữ</th>
+                                <th class="p-2 font-semibold">Thang điểm 4</th>
+                            </tr>
+                        </thead>
+                        <tbody id="conversion-table-body">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Xếp loại học lực</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><span class="font-semibold text-green-700">Xuất sắc:</span> GPA &ge; 3.60</li>
+                        <li><span class="font-semibold text-blue-700">Giỏi:</span> 3.20 &le; GPA &lt; 3.60</li>
+                        <li><span class="font-semibold text-yellow-700">Khá:</span> 2.50 &le; GPA &lt; 3.20</li>
+                        <li><span class="font-semibold text-orange-700">Trung bình:</span> 2.00 &le; GPA &lt; 2.50</li>
+                        <li><span class="font-semibold text-red-700">Yếu:</span> GPA &lt; 2.00</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="text-center mt-12 text-gray-500 text-sm">
+            <p>&copy; 2026 - Công cụ tính điểm GPA &amp; Dự phóng CPA Đại học.</p>
+            <p>Bảng quy đổi điểm và xếp loại mang tính chất tham khảo dựa trên quy chế đào tạo tín chỉ của các trường.</p>
+        </footer>
+    </div>
+
+    <!-- Liên kết đến file JavaScript ngoài -->
+    <script src="script.js" defer></script>
+</body>
+
+</html>

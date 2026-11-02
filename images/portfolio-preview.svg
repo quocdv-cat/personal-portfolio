@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+  <defs>
+    <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" rx="20" fill="url(#bg3)"/>
+  <circle cx="700" cy="400" r="140" fill="#38bdf8" opacity="0.1"/>
+  <circle cx="100" cy="80" r="120" fill="#6366f1" opacity="0.1"/>
+
+  <!-- Browser Window -->
+  <rect x="65" y="50" width="670" height="380" rx="16" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+  <rect x="65" y="50" width="670" height="44" rx="16" fill="#1e293b"/>
+  <circle cx="92" cy="72" r="6" fill="#ef4444"/>
+  <circle cx="112" cy="72" r="6" fill="#f59e0b"/>
+  <circle cx="132" cy="72" r="6" fill="#10b981"/>
+  <rect x="165" y="60" width="420" height="24" rx="6" fill="#0f172a"/>
+  <text x="375" y="76" font-family="Consolas, monospace" font-size="12" fill="#94a3b8" text-anchor="middle">https://quocdv-cat.github.io/personal-portfolio</text>
+
+  <!-- Sidebar Mockup -->
+  <rect x="65" y="94" width="185" height="336" fill="#1e293b"/>
+  <circle cx="157" cy="155" r="36" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
+  <text x="157" y="212" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Dong Van Quoc</text>
+  <text x="157" y="230" font-family="Inter, Arial, sans-serif" font-size="11" fill="#38bdf8" text-anchor="middle">Software Engineering</text>
+  <rect x="92" y="252" width="130" height="22" rx="4" fill="#334155"/>
+  <rect x="92" y="282" width="130" height="22" rx="4" fill="#334155"/>
+  <rect x="92" y="312" width="130" height="22" rx="4" fill="#334155"/>
+
+  <!-- Main Content Mockup -->
+  <rect x="275" y="115" width="435" height="90" rx="10" fill="#1e293b" stroke="#334155"/>
+  <text x="295" y="145" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="bold" fill="#f8fafc">Personal Developer Portfolio</text>
+  <text x="295" y="168" font-family="Inter, Arial, sans-serif" font-size="12" fill="#94a3b8">Responsive UI • Dark/Light Theme • Project Architecture</text>
+  <text x="295" y="188" font-family="Inter, Arial, sans-serif" font-size="12" fill="#38bdf8">Security-hardened CSP • Zero External Runtime Dependencies</text>
+
+  <!-- Mini Cards -->
+  <rect x="275" y="222" width="210" height="125" rx="10" fill="#1e293b" stroke="#3b82f6"/>
+  <text x="292" y="250" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">AIO-down Bot</text>
+  <text x="292" y="272" font-family="Inter, Arial, sans-serif" font-size="11" fill="#cbd5e1">Python • TeleBot • Flask</text>
+  <text x="292" y="292" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">Multi-API Failover System</text>
+  <rect x="292" y="308" width="90" height="22" rx="5" fill="#2563eb"/>
+
+  <rect x="500" y="222" width="210" height="125" rx="10" fill="#1e293b" stroke="#6366f1"/>
+  <text x="517" y="250" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="bold" fill="#818cf8">GPA &amp; CPA Calculator</text>
+  <text x="517" y="272" font-family="Inter, Arial, sans-serif" font-size="11" fill="#cbd5e1">JS ES6+ • Gemini AI • SheetJS</text>
+  <text x="517" y="292" font-family="Inter, Arial, sans-serif" font-size="11" fill="#94a3b8">30+ Vietnam Universities</text>
+  <rect x="517" y="308" width="90" height="22" rx="5" fill="#4f46e5"/>
+
+  <!-- Bottom Badges -->
+  <rect x="275" y="365" width="100" height="28" rx="6" fill="#0f172a" stroke="#38bdf8"/>
+  <text x="325" y="384" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#38bdf8" text-anchor="middle">HTML5</text>
+
+  <rect x="387" y="365" width="100" height="28" rx="6" fill="#0f172a" stroke="#38bdf8"/>
+  <text x="437" y="384" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#38bdf8" text-anchor="middle">CSS3 Grid</text>
+
+  <rect x="499" y="365" width="100" height="28" rx="6" fill="#0f172a" stroke="#38bdf8"/>
+  <text x="549" y="384" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="bold" fill="#38bdf8" text-anchor="middle">JavaScript</text>
+</svg>
+

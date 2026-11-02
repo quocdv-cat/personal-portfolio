@@ -3,55 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 1 - Portfolio</title>
-    <link rel="stylesheet" href="../styles.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com;">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <title>AIO-down — TikTok Downloader Telegram Bot | Dong Van Quoc</title>
+    <meta name="description" content="Detailed case study and architecture of AIO-down (@paws_down_tiktok_bot) — a Python Telegram Bot for downloading HD no-watermark TikTok videos, photo slides, and MP3 audio.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src https://cdnjs.cloudflare.com;">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <div class="project-detail project-1">
-        <a href="../index.html" class="back-button">
-            <i class="fas fa-arrow-left"></i> Back to Portfolio
-        </a>
-        
-        <h1><i class="fas fa-project-diagram"></i> Project 1</h1>
-        
-        <div class="project-content">
-            <div class="project-image">
-                <img src="../images/project1-image.jpg" alt="Project 1 Screenshot">
+        <div class="detail-topbar">
+            <a href="../index.html#projects" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+            <button type="button" class="theme-toggle" aria-label="Switch color theme">
+                <i class="fas fa-moon"></i>
+                <span class="theme-label">Dark Mode</span>
+            </button>
+        </div>
+
+        <header class="project-detail-header">
+            <h1><i class="fab fa-telegram-plane"></i> AIO-down — TikTok Media Downloader Telegram Bot</h1>
+            <p>High-availability Python Telegram Bot that extracts HD watermark-free TikTok videos, multi-photo slide albums, and MP3 audio tracks with automatic multi-provider failover.</p>
+            <div class="project-meta-row">
+                <span class="meta-pill status-live"><i class="fas fa-circle"></i> Active Telegram Bot: @paws_down_tiktok_bot</span>
+                <span class="meta-pill"><i class="fas fa-user-cog"></i> Role: Sole Developer (Bot by Quoc Dong)</span>
+                <span class="meta-pill"><i class="fas fa-folder"></i> Integrated Path: ./projects/AIO-down/</span>
             </div>
-            
-            <div class="project-info">
-                <h2><i class="fas fa-info-circle"></i> Project Description</h2>
-                <p>Chi tiết mô tả về dự án của bạn...</p>
-                
-                <h2><i class="fas fa-laptop-code"></i> Technologies Used</h2>
-                <div class="skills-list">
-                    <span class="skill-item">Technology 1</span>
-                    <span class="skill-item">Technology 2</span>
-                    <span class="skill-item">Technology 3</span>
+        </header>
+
+        <div class="project-content">
+            <div class="project-image-box">
+                <div class="project-image">
+                    <img src="../images/aio-down-preview.svg" alt="AIO-down TikTok Downloader Bot Preview">
                 </div>
-                
-                <h2><i class="fas fa-star"></i> Key Features</h2>
+
+                <div class="architecture-box">
+                    <h3><i class="fas fa-sitemap"></i> Source Code Structure</h3>
+                    <pre>projects/AIO-down/
+├── bot.py              # Telegram handlers, RAM streaming &amp; Flask keep-alive
+├── requirements.txt    # pyTelegramBotAPI, requests, flask
+├── README.md           # Bot handle documentation (@paws_down_tiktok_bot)
+└── services/
+    ├── __init__.py
+    └── tiktok.py       # Dual-provider controller (TikWM + LoveTik failover)</pre>
+                </div>
+            </div>
+
+            <div class="project-info">
+                <h2><i class="fas fa-info-circle"></i> Project Overview &amp; Problem Solved</h2>
+                <p>
+                    Sharing or archiving TikTok content often suffers from compressed video quality, intrusive watermarks, or inability to save multi-photo slideshows and background music directly within messaging apps.
+                </p>
+                <p>
+                    <strong>AIO-down</strong> solves this by providing an instant Telegram bot interface (<code>@paws_down_tiktok_bot</code>). Users simply paste any TikTok link into the chat, and the bot automatically detects whether the post is a video or photo slideshow, fetches the highest-resolution watermark-free stream, and delivers it directly to Telegram with an interactive inline button for MP3 audio extraction.
+                </p>
+
+                <h2><i class="fas fa-laptop-code"></i> Technology Stack</h2>
+                <div class="skills-list">
+                    <span class="skill-item">Python 3</span>
+                    <span class="skill-item">pyTelegramBotAPI (TeleBot)</span>
+                    <span class="skill-item">Flask (Keep-Alive Server)</span>
+                    <span class="skill-item">Requests (HTTP Streaming)</span>
+                    <span class="skill-item">Multi-threading</span>
+                    <span class="skill-item">TikWM &amp; LoveTik REST APIs</span>
+                </div>
+
+                <h2><i class="fas fa-star"></i> Key Technical Features</h2>
                 <ul class="feature-list">
-                    <li><i class="fas fa-check"></i> Feature 1</li>
-                    <li><i class="fas fa-check"></i> Feature 2</li>
-                    <li><i class="fas fa-check"></i> Feature 3</li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Dual-Provider Failover Controller:</strong> Prioritizes <code>TikWM API</code> for full HD video and photo slide support, and automatically falls back to <code>LoveTik API</code> with browser User-Agent emulation if the primary provider fails.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Auto Content-Type Detection:</strong> Seamlessly distinguishes between single HD videos and multi-image slideshows (sending up to 10 photos as a grouped Telegram media album via <code>InputMediaPhoto</code>).</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>On-Demand MP3 Audio Extraction:</strong> Caches media audio URLs by video ID and attaches an inline callback button (<code>🎵 Tải Nhạc (MP3)</code>) so users can extract background music in one tap.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>In-Memory Streaming &amp; Telegram Size Guard:</strong> Streams video payloads in RAM and validates <code>Content-Length</code> against Telegram's 48MB bot upload limit, providing a direct download fallback link for oversized videos.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Real-Time 3-Step Progress Updates:</strong> Edits status messages dynamically (Connecting &rarr; Downloading &rarr; Uploading) and cleans up temporary status messages upon completion.</span></li>
+                    <li><i class="fas fa-check-circle"></i> <span><strong>Cloud Keep-Alive Web Server:</strong> Runs a lightweight background Flask HTTP server on a separate daemon thread (port <code>8080</code> / <code>$PORT</code>) for cloud PaaS health checks (e.g., Render).</span></li>
                 </ul>
-                
+
                 <div class="project-links">
-                    <a href="[link-github]" target="_blank" class="btn">
+                    <a href="https://t.me/paws_down_tiktok_bot" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-telegram-plane"></i> Open Telegram Bot
+                    </a>
+                    <a href="https://github.com/quocdv-cat/AIO-downloader-tele" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
                         <i class="fab fa-github"></i> GitHub Repository
                     </a>
-                    <a href="[link-demo]" target="_blank" class="btn">
-                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    <a href="./AIO-down/bot.py" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-file-code"></i> View bot.py
+                    </a>
+                    <a href="./AIO-down/services/tiktok.py" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-code-branch"></i> View tiktok.py
                     </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="../script.js" defer></script>
 </body>
-</html> 
+</html>
